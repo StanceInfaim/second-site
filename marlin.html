@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marlin | 3D-печать</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Прошивка Marlin для Ender 3</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="ender3.html">Ender 3</a></li>
+                <li><a href="marlin.html" class="active">Marlin</a></li>
+                <li><a href="projects.html">Мои проекты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Что такое Marlin?</h2>
+            <p>
+                <strong>Marlin</strong> — открытая прошивка для FDM-3D-принтеров, разрабатываемая с 2011 года. 
+                Поддерживает множество моделей, включая Creality Ender 3. Позволяет:
+            </p>
+            <ul>
+                <li>Улучшить точность печати.</li>
+                <li>Добавить новые функции (например, автолевеллинг).</li>
+                <li>Повысить безопасность (Thermal Runaway Protection).</li>
+            </ul>
+            <img src="images/marlin-logo.png" alt="Marlin Firmware" width="300">
+        </section>
+
+        <section>
+            <h2>Как установить Marlin на Ender 3?</h2>
+            <ol>
+                <li>
+                    <strong>Скачайте прошивку:</strong>  
+                    <a href="https://marlinfw.org/" target="_blank">Официальный сайт</a> или 
+                    <a href="https://github.com/MarlinFirmware/Marlin" target="_blank">GitHub</a>.
+                </li>
+                <li>
+                    <strong>Настройте конфигурацию:</strong>  
+                    В файле <code>Configuration.h</code> укажите параметры для Ender 3.
+                </li>
+                <li>
+                    <strong>Скомпилируйте прошивку:</strong>  
+                    Используйте Arduino IDE или PlatformIO.
+                </li>
+                <li>
+                    <strong>Загрузите через USB или SD-карту:</strong>  
+                    Для Ender 3 обычно требуется программатор (например, Arduino Uno).
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Важные настройки в Marlin</h2>
+            <table>
+                <tr>
+                    <th>Параметр</th>
+                    <th>Рекомендуемое значение</th>
+                    <th>Описание</th>
+                </tr>
+                <tr>
+                    <td><code>THERMAL_RUNAWAY_PROTECTION</code></td>
+                    <td><code>true</code></td>
+                    <td>Защита от перегрева</td>
+                </tr>
+                <tr>
+                    <td><code>AUTO_BED_LEVELING</code></td>
+                    <td><code>BILINEAR</code></td>
+                    <td>Автокалибровка стола</td>
+                </tr>
+                <tr>
+                    <td><code>LINE_ADVANCE</code></td>
+                    <td><code>0.2</code></td>
+                    <td>Улучшение качества углов</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Полезные ссылки</h2>
+            <ul>
+                <li><a href="https://marlinfw.org/docs/basics/install_arduino.html" target="_blank">Официальная документация</a></li>
+                <li><a href="https://www.youtube.com/watch?v=KqkGQ8q1Ats" target="_blank">Видео-гайд по прошивке</a></li>
+                <li><a href="https://www.reddit.com/r/ender3/" target="_blank">Сообщество Ender 3 на Reddit</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Будюкин Леонид | 3D-печать</p>
+    </footer>
+    <script>
+        document.querySelectorAll('main img').forEach(img => {
+            img.addEventListener('click', function() {
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.background = 'rgba(0,0,0,0.85)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = 1000;
+                overlay.style.cursor = 'zoom-out';
+                const bigImg = document.createElement('img');
+                bigImg.src = img.src;
+                bigImg.style.maxWidth = '90vw';
+                bigImg.style.maxHeight = '90vh';
+                bigImg.style.borderRadius = '15px';
+                bigImg.style.boxShadow = '0 8px 32px rgba(0,0,0,0.7)';
+                bigImg.alt = img.alt;
+                overlay.appendChild(bigImg);
+                overlay.addEventListener('click', function() {
+                    overlay.remove();
+                });
+                document.body.appendChild(overlay);
+            });
+        });
+    </script>
+
+</body>
+</html>

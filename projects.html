@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои проекты | 3D-печать</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Мои проекты</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="ender3.html">Ender 3</a></li>
+                <li><a href="marlin.html">Marlin</a></li>
+                <li><a href="projects.html" class="active">Мои проекты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Детали для автомобилей</h2>
+            <p>
+                Я печатаю полезные детали для машин на заказ. Вот что уже сделал:
+            </p>
+
+
+            <div class="project">
+                <h3>Клипсы жабо для Renault Scenic</h3>
+                <img src="images/clips.png" alt="Клипсы Renault" width="300">
+                <p>
+                    <strong>Материал:</strong> PETG<br>
+                    Заменил сломанные клипсы в салоне — теперь всё держится как новое.
+                </p>
+            </div>
+
+        
+            <div class="project">
+                <h3>Крышки фар Lada Vesta</h3>
+                <img src="images/vesta.png" alt="Крышки фар" width="300">
+                <p>
+                    <strong>Материал:</strong> PETG.<br>
+                    Черные, не плавятся от высоких температур ламп.
+                </p>
+            </div>
+
+
+            <div class="project">
+                <h3>Воздуховоды задние для Chevroulet Cruze</h3>
+                <img src="images/cruze.png" alt="Держатель" width="300">
+                <p>
+                    <strong>Материал:</strong> PETG.<br>
+                    Крепится в вентиляционные отверстия под передними сидениями.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Печать на заказ</h2>
+            <p>
+                Могу напечатать детали для вашего авто. Примеры:
+            </p>
+            <ul>
+                <li>Кронштейны зеркал.</li>
+                <li>Накладки на панель.</li>
+                <li>Чехлы для ключей.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Форма обратной связи</h2>
+            <form id="feedbackForm" novalidate>
+                <div>
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="invalid-feedback">Пожалуйста, введите имя</div>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="invalid-feedback">Введите корректный email</div>
+                </div>
+                <div>
+                    <label for="comment">Комментарий:</label>
+                    <textarea id="comment" name="comment" rows="2" required></textarea>
+                    <div class="invalid-feedback">Пожалуйста, оставьте комментарий</div>
+                </div>
+                <button type="submit">Отправить</button>
+            </form>
+            <div id="result"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Будюкин Леонид | Telegram: @StanceInfaim</p>
+    </footer>
+    <script>
+        const form = document.getElementById('feedbackForm');
+        const resultDiv = document.getElementById('result');
+
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                resultDiv.innerHTML = '';
+                const isNameValid = form.name.value.trim() !== '';
+                const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value);
+                const isCommentValid = form.comment.value.trim() !== '';
+                form.name.nextElementSibling.style.display = isNameValid ? 'none' : 'block';
+                form.email.nextElementSibling.style.display = isEmailValid ? 'none' : 'block';
+                form.comment.nextElementSibling.style.display = isCommentValid ? 'none' : 'block';
+                if (isNameValid && isEmailValid && isCommentValid) {
+                    resultDiv.innerHTML = `
+                <div style="color:green;margin-top:10px;">
+                    Спасибо, ${form.name.value}!<br>
+                    Ваш комментарий: ${form.comment.value}<br>
+                </div>
+            `;
+                    form.reset();
+                }
+            });
+        }
+    </script>
+    <script>
+        document.querySelectorAll('main img').forEach(img => {
+            img.addEventListener('click', function() {
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.background = 'rgba(0,0,0,0.85)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = 1000;
+                overlay.style.cursor = 'zoom-out';
+                const bigImg = document.createElement('img');
+                bigImg.src = img.src;
+                bigImg.style.maxWidth = '90vw';
+                bigImg.style.maxHeight = '90vh';
+                bigImg.style.borderRadius = '15px';
+                bigImg.style.boxShadow = '0 8px 32px rgba(0,0,0,0.7)';
+                bigImg.alt = img.alt;
+                overlay.appendChild(bigImg);
+                overlay.addEventListener('click', function() {
+                    overlay.remove();
+                });
+                document.body.appendChild(overlay);
+            });
+        });
+    </script>
+</body>
+</html>

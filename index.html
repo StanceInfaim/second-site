@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D-печать с Ender 3 | Главная</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>3D-печать с Ender 3</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="ender3.html">Ender 3</a></li>
+                <li><a href="marlin.html">Marlin</a></li>
+                <li><a href="projects.html">Мои проекты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Добро пожаловать в мир 3D-печати!</h2>
+            <img src="images/ender3.jpg" alt="Creality Ender 3" width="500">
+            <p>
+                Ender 3 — один из самых популярных 3D-принтеров для начинающих и профессионалов. 
+                В этом сайте я расскажу о его возможностях, прошивке Marlin и своих проектах.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Будюкин Леонид</p>
+    </footer>
+    <script>
+        document.querySelectorAll('main img').forEach(img => {
+            img.addEventListener('click', function() {
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.background = 'rgba(0,0,0,0.85)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = 1000;
+                overlay.style.cursor = 'zoom-out';
+                const bigImg = document.createElement('img');
+                bigImg.src = img.src;
+                bigImg.style.maxWidth = '90vw';
+                bigImg.style.maxHeight = '90vh';
+                bigImg.style.borderRadius = '15px';
+                bigImg.style.boxShadow = '0 8px 32px rgba(0,0,0,0.7)';
+                bigImg.alt = img.alt;
+                overlay.appendChild(bigImg);
+                overlay.addEventListener('click', function() {
+                    overlay.remove();
+                });
+                document.body.appendChild(overlay);
+            });
+        });
+    </script>
+
+</body>
+</html>

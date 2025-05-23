@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ender 3 | 3D-печать</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Creality Ender 3</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="ender3.html" class="active">Ender 3</a></li>
+                <li><a href="marlin.html">Marlin</a></li>
+                <li><a href="projects.html">Мои проекты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Обзор принтера</h2>
+            <img src="images/ender3_photo.jpg" alt="Creality Ender 3" width="600">
+            <p>
+                <strong>Creality Ender 3</strong> — один из самых популярных FDM-принтеров для начинающих и энтузиастов. 
+                Отличается низкой ценой, простотой сборки и высокой модифицируемостью.
+            </p>
+        </section>
+
+        <section>
+            <h2>Технические характеристики</h2>
+            <table>
+                <tr>
+                    <th>Параметр</th>
+                    <th>Значение</th>
+                </tr>
+                <tr>
+                    <td>Область печати</td>
+                    <td>220 × 220 × 250 мм</td>
+                </tr>
+                <tr>
+                    <td>Толщина слоя</td>
+                    <td>0.1 – 0.4 мм</td>
+                </tr>
+                <tr>
+                    <td>Температура сопла</td>
+                    <td>до 250°C</td>
+                </tr>
+                <tr>
+                    <td>Температура стола</td>
+                    <td>до 100°C</td>
+                </tr>
+                <tr>
+                    <td>Материалы</td>
+                    <td>PLA, ABS, PETG, TPU</td>
+                </tr>
+                <tr>
+                    <td>Экран</td>
+                    <td>Монохромный LCD</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Плюсы и минусы</h2>
+            <div class="pros-cons">
+                <div>
+                    <h3>👍 Достоинства</h3>
+                    <ul>
+                        <li>Низкая стоимость (~15-20 тыс. руб.)</li>
+                        <li>Простота сборки и настройки</li>
+                        <li>Огромное комьюнити и моды</li>
+                        <li>Хорошее качество печати "из коробки"</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>👎 Недостатки</h3>
+                    <ul>
+                        <li>Ручная калибровка стола</li>
+                        <li>Шумные шаговые двигатели</li>
+                        <li>Пластиковый экструдер (желательно заменить)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Популярные модификации</h2>
+            <ul>
+                <li><strong>Автолевеллинг (BLTouch)</strong> — датчик для автоматической калибровки стола.</li>
+                <li><strong>Титановый экструдер</strong> — уменьшает риск проскальзывания филамента.</li>
+                <li><strong>Замена радиаторов вентиляторов</strong> — снижает шум.</li>
+                <li><strong>Прошивка Marlin с поддержкой Thermal Runaway</strong> — повышает безопасность.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Будюкин Леонид | 3D-печать</p>
+    </footer>
+    <script>
+        document.querySelectorAll('main img').forEach(img => {
+            img.addEventListener('click', function() {
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.background = 'rgba(0,0,0,0.85)';
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = 1000;
+                overlay.style.cursor = 'zoom-out';
+                const bigImg = document.createElement('img');
+                bigImg.src = img.src;
+                bigImg.style.maxWidth = '90vw';
+                bigImg.style.maxHeight = '90vh';
+                bigImg.style.borderRadius = '15px';
+                bigImg.style.boxShadow = '0 8px 32px rgba(0,0,0,0.7)';
+                bigImg.alt = img.alt;
+                overlay.appendChild(bigImg);
+                overlay.addEventListener('click', function() {
+                    overlay.remove();
+                });
+                document.body.appendChild(overlay);
+            });
+        });
+    </script>
+</body>
+</html>
